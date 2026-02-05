@@ -165,7 +165,7 @@ def _send_smslocal(phone: str, message: str) -> tuple[bool, str | None]:
 
 
 def _imagine_url() -> str:
-    return os.environ.get("IMAGINE_URL", "/imagine/index.html")
+    return os.environ.get("IMAGINE_URL", "https://imagine-2lsn.onrender.com")
 
 
 def _normalize_in_phone(raw: str) -> str | None:
