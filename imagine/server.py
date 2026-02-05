@@ -1,10 +1,7 @@
 import base64
 import os
 from flask import Flask, jsonify, request, send_from_directory
-from openai import OpenAI
-
 app = Flask(__name__, static_folder=".", static_url_path="")
-client = OpenAI()
 
 @app.route("/")
 def root():
@@ -17,26 +14,9 @@ def generate():
     if not prompt:
         return jsonify({"error": "Prompt required"}), 400
 
-    try:
-        response = client.responses.create(
-            model="gpt-5",
-            input=prompt,
-            tools=[{"type": "image_generation"}],
-            tool_choice={"type": "image_generation"},
-        )
-        image_data = [
-            output.result
-            for output in response.output
-            if output.type == "image_generation_call"
-        ]
-        if not image_data:
-            return jsonify({"error": "No image generated"}), 500
-
-        image_base64 = image_data[0]
-        image_url = f"data:image/png;base64,{image_base64}"
-        return jsonify({"image_url": image_url})
-    except Exception as exc:
-        return jsonify({"error": str(exc)}), 500
+    # No OpenAI integration in this deployment.
+    # Return a friendly message so the UI can fall back gracefully.
+    return jsonify({"error": "Image generation disabled"}), 501
 
 if __name__ == "__main__":
     if not os.getenv("OPENAI_API_KEY"):
