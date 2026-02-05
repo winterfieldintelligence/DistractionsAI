@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Distractions AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <button class="icon-btn sidebar-close" id="sidebarClose" aria-label="Close sidebar">
+        <span></span>
+        <span></span>
+      </button>
+      <div class="brand">
+        <div class="logo">
+          <img src="assets/DAI logo.png" alt="Distractions AI" />
+        </div>
+        
+      </div>
+
+      <button class="nav-item nav-item--active" id="navNew">
+        <span class="nav-icon">✎</span>
+        <span>New notes</span>
+      </button>
+
+      <div class="section-title">Recent</div>
+      <div class="recent-list" id="recentList">
+        <button class="recent-item">
+          <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=96&q=60" alt="Python" />
+          <span>Introduction to Python</span>
+        </button>
+        <button class="recent-item">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=96&q=60" alt="C" />
+          <span>C Programming basic</span>
+        </button>
+        <button class="recent-item">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=96&q=60" alt="Conditional" />
+          <span>Conditional Operator</span>
+        </button>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="avatar"></div>
+        <span>Eknath Patil</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn" id="menuToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="topbar-actions">
+          <button class="pill-btn" id="addFilesTop">Add files</button>
+          <button class="link-btn">Share</button>
+        </div>
+      </header>
+
+      <section class="content" id="viewHome">
+        <div class="hero">
+          <div class="hero-title" contenteditable="true" id="projectName">
+            <span class="spark">✈</span>
+            <h1>Distractions AI - AI Imaginary Notes</h1>
+          </div>
+          <button class="pill-btn" id="addFiles">Add files</button>
+        </div>
+
+        <div class="prompt-row">
+          <div class="prompt-input">
+            <span class="plus">+</span>
+            <input type="text" id="promptInput" placeholder="New chat in Distractions AI - AI Imaginary Notes" />
+          </div>
+          <button class="action-btn" id="generateBtn">GENERATE</button>
+        </div>
+
+        <div class="apps">
+          <div class="apps-title">Apps</div>
+          <div class="apps-sub">Chat with your favorite apps in ChatGPT</div>
+          <div class="slider">
+            <div class="slider-track" id="sliderTrack">
+              <div class="slide">
+                <div class="slide-content">
+                  <div class="slide-logo">Ps</div>
+                  <div class="slide-text">
+                    <h3>Edit with Photoshop</h3>
+                    <p>Edit and enhance images</p>
+                    <button class="dark-btn">View</button>
+                  </div>
+                </div>
+                <div class="slide-image">
+                  <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=520&q=60" alt="Mountain" />
+                </div>
+              </div>
+              <div class="slide">
+                <div class="slide-content">
+                  <div class="slide-logo">Ae</div>
+                  <div class="slide-text">
+                    <h3>Animate with AE</h3>
+                    <p>Motion graphics on demand</p>
+                    <button class="dark-btn">View</button>
+                  </div>
+                </div>
+                <div class="slide-image">
+                  <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=520&q=60" alt="Lake" />
+                </div>
+              </div>
+              <div class="slide">
+                <div class="slide-content">
+                  <div class="slide-logo">Id</div>
+                  <div class="slide-text">
+                    <h3>Design with InDesign</h3>
+                    <p>Layout perfect pages</p>
+                    <button class="dark-btn">View</button>
+                  </div>
+                </div>
+                <div class="slide-image">
+                  <img src="https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?auto=format&fit=crop&w=520&q=60" alt="Road" />
+                </div>
+              </div>
+            </div>
+            <div class="slider-dots" id="sliderDots">
+              <span class="dot active"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content hidden" id="viewResult">
+        <div class="result-header">
+          <div class="result-title">Image created · <span id="resultCaption">Your prompt</span></div>
+          <div class="result-actions">
+            <button class="pill-btn" id="downloadBtn" type="button">Download</button>
+            <div class="result-pill" id="resultPrompt">create image of ...</div>
+          </div>
+        </div>
+        <div class="result-bubble" id="resultBubble">create image of ...</div>
+        <div class="result-card" id="resultCard">
+          <div class="loading" id="loadingState">
+            <div class="spinner"></div>
+            <div class="loading-text">Generating image...</div>
+            <div class="skeleton"></div>
+          </div>
+          <div class="result-image-wrap" id="resultImageWrap">
+            <img id="resultImage" alt="Generated" />
+            <div class="image-actions">
+              <button class="icon-action" id="downloadSingleBtn" type="button" aria-label="Download image">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3v10m0 0l-4-4m4 4l4-4M5 19h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="prompt-row bottom sticky-input">
+          <div class="prompt-input">
+            <span class="plus">+</span>
+            <input type="text" id="promptInputBottom" placeholder="cyber truck" />
+          </div>
+          <button class="action-btn" id="sendBtn">SEND</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+
+  <script src="app.js"></script>
+</body>
+</html>

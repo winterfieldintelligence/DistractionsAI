@@ -1,0 +1,568 @@
+
+    
+  
+  
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #1e1e1e;
+}
+
+/* NAVBAR */
+.navbar {
+  height: 60px;
+  background: #000;
+  padding: 0 30px;
+  
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 2000;
+}
+
+.logo img {
+  width: 199px;
+  height: 37px;
+}
+
+/* LINKS */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ccc;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #fff;
+}
+
+.nav-links .active {
+  color: #fff;
+  border-bottom: 2px solid #fff;
+  padding-bottom: 4px;
+}
+
+/* MENU ICON */
+.menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+.menu-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+/* HIDE CHECKBOX */
+#menu-toggle {
+  display: none;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #000;
+
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+
+    display: none;
+  }
+
+  #menu-toggle:checked ~ .nav-links {
+    display: flex;
+  }
+}
+
+
+
+/* RESET */
+
+
+/* ROOT FONT */
+body {
+  font-family: -apple-system, BlinkMacSystemFont,
+               "SF Pro Text", "SF Pro Display",
+               system-ui, sans-serif;
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+/* HERO SECTION */
+.hero {
+  
+  display: flex;
+  align-items: 100px;
+  justify-content: center;
+  text-align: center;
+  
+  
+  
+}
+
+.changingText {
+  display: inline-block;
+  color: #7c7cff;
+  font-weight: 700;
+  transition: all 0.4s ease;
+}
+.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* HEADING */
+.hero h1 {
+  font-weight: 500; /* SF Pro Medium */
+  line-height: 1.2;
+  margin-top: 5px;
+  
+  
+
+  /* Responsive font size */
+  font-size: 50;
+}
+
+/* SECOND LINE */
+.hero h1 span {
+  display: block;
+  font-weight: 500;
+  font-size: 45px;
+}
+
+
+
+.image-slider {
+  width: 100%;
+  overflow: hidden;
+  
+  margin-top: -3rem;   /* ⬅ reduce this */
+  margin-bottom: 0rem;
+}
+
+
+.slider-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 40s linear infinite;
+  
+  
+}
+
+.slider-track img {
+  width: clamp(160px, 20vw, 240px);
+  height: auto;
+  margin-right: 1rem;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* Animation */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+/* CTA SECTION */
+.cta {
+  display: flex;
+  justify-content: center;
+  margin: -3rem 0 4rem;
+
+}
+
+/* BUTTON */
+.create-btn {
+  background-color: #ffffff;
+  color: #000000;
+  font-family: -apple-system, BlinkMacSystemFont,
+               "SF Pro Text", "SF Pro Display",
+               system-ui, sans-serif;
+  width: 185px;
+  height: 40px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding: auto;
+  font-size: 23px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.25s ease,
+              transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+/* HOVER */
+.create-btn:hover {
+  background-color: #eaeaea; /* slightly low white */
+  transform: translateY(-1px);
+  
+}
+
+/* ACTIVE (click) */
+.create-btn:active {
+  transform: translateY(0);
+  background-color: #e0e0e0;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
+}
+
+body {
+  background: #000;
+  color: #fff;
+}
+
+/* GLOBAL */
+section {
+  padding: 80px 5%;
+}
+
+h2 {
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 60px;
+}
+
+/* FEATURES */
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.feature-grid.reverse {
+  direction: rtl;
+}
+
+.feature-text h3 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.feature-text p {
+  color: #aaa;
+  font-size: 18px;
+}
+
+.feature-card img {
+  width: 100%;
+  border-radius: 20px;
+  background: #111;
+}
+
+/* USES */
+.use-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.use-box {
+  background: #111;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.use-box h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+/* FEEDBACK */
+.feedback-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+
+.feedback-card {
+  background: #111;
+  padding: 30px;
+  border-radius: 20px;
+  font-size: 18px;
+}
+
+.feedback-card span {
+  display: block;
+  margin-top: 10px;
+  color: #888;
+}
+
+/* FAQ */
+.faq-item {
+  border-bottom: 1px solid #222;
+  padding: 20px 0;
+}
+
+.faq-question {
+  background: none;
+  border: none;
+  color: #4da3ff;
+  font-size: 20px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-answer {
+  display: none;
+  color: #aaa;
+  padding-top: 10px;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .use-grid,
+  .feedback-grid {
+    grid-template-columns: 1fr;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+}
+.footer {
+  background: #212121;
+  color: white;
+  padding: 20px 8%;
+  font-family: Arial, sans-serif;
+}
+
+/* Main Row */
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Logo */
+.footer-logo img {
+  height: 40px;
+}
+
+/* Links */
+.footer-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.footer-links a:hover {
+  color: #aaaaaa;
+}
+
+/* Button */
+.footer-btn button {
+  background: white;
+  color: #212121;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.footer-btn button:hover {
+  background: #dddddd;
+}
+
+/* Copyright */
+.footer-copy {
+  text-align: center;
+  font-size: 13px;
+  margin-top: 12px;
+  color: #999;
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links {
+    margin: 10px 0;
+  }
+}
+
+
+.footer-btnn button {
+  background: white;
+  width: 180px;
+  height: 40px;
+  color: #212121;
+  font-size: 20px;
+  border: none;
+  padding: px px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.footer-btnn button:hover {
+  background: #dddddd;
+}
+
+.channel-section {
+  padding: 80px 8%;
+  background: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.channel-card {
+  background: linear-gradient(135deg, #212121, #2c2c2c);
+  border-radius: 18px;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+
+/* LEFT TEXT */
+.channel-info h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  
+}
+
+.channel-info p {
+  color: #bbb;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+
+/* SUB COUNT */
+.subscriber-box {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.sub-count {
+  font-size: 48px;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.sub-text {
+  font-size: 18px;
+  color: #ccc;
+}
+
+/* BUTTON */
+.subscribe-btn {
+  background: #ff0000;
+  color: white;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.subscribe-btn:hover {
+  background: #cc0000;
+  transform: scale(1.05);
+}
+
+/* RIGHT ICON */
+.channel-icon img {
+  width: 160px;
+  opacity: 0.9;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .channel-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .channel-icon img {
+    width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sub-count {
+    font-size: 36px;
+  }
+
+  .channel-info h2 {
+    font-size: 24px;
+  }
+}
+
+

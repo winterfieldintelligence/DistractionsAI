@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login or Sign up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <img class="brand-logo" src="{{ url_for('static', filename='DAI logo.png') }}" alt="Logo" />
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="card">
+        <h1>Login or Sign up</h1>
+        <p class="subtitle">You'll get smarter responses and can upload files, images, and more.</p>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash">
+              {% for message in messages %}
+                <div class="flash-item">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <div class="stack">
+          <a class="btn oauth" href="/auth/google">
+            <span class="icon google" aria-hidden="true"></span>
+            Continue with Google
+          </a>
+          
+          <button class="btn oauth" type="button" id="phoneButton">
+            <span class="icon phone" aria-hidden="true"></span>
+            Continue with phone
+          </button>
+        </div>
+
+        <div class="divider"><span>OR</span></div>
+
+        <form class="email-form" method="post" action="/auth/email" id="emailForm">
+          <div class="field">
+            <input type="email" name="email" placeholder="Email address" required />
+          </div>
+          <div class="field">
+            <input type="password" name="password" placeholder="Password (min 6 characters)" minlength="6" required />
+          </div>
+          <button class="btn primary" type="submit" id="continueBtn">Continue</button>
+          <p class="helper">
+            Already have an account? <a href="/login">Log in</a>
+          </p>
+        </form>
+
+        <form class="phone-form hidden" method="post" action="/auth/phone/request" id="phoneForm">
+          <div class="field">
+            <input type="tel" name="phone" placeholder="Phone number (+91XXXXXXXXXX)" />
+          </div>
+          <button class="btn primary" type="submit">Send code</button>
+        </form>
+
+        <form class="phone-form hidden" method="post" action="/auth/phone/verify" id="otpForm">
+          <div class="field">
+            <input type="tel" name="phone" placeholder="Phone number (+91XXXXXXXXXX)" />
+          </div>
+          <div class="field">
+            <input type="text" name="otp" placeholder="Enter 4-digit code" />
+          </div>
+          <button class="btn primary" type="submit">Verify</button>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      const phoneButton = document.getElementById('phoneButton');
+      const phoneForm = document.getElementById('phoneForm');
+      const otpForm = document.getElementById('otpForm');
+
+      phoneButton.addEventListener('click', () => {
+        phoneForm.classList.remove('hidden');
+        otpForm.classList.remove('hidden');
+        phoneForm.querySelector('input').focus();
+      });
+    </script>
+  </body>
+</html>
