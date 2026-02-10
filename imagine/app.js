@@ -25,9 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultCard = document.getElementById("resultCard");
   const downloadBtn = document.getElementById("downloadBtn");
   const downloadSingleBtn = document.getElementById("downloadSingleBtn");
+  const recentList = document.getElementById("recentList");
+
 
   let slideIndex = 0;
   let notesData = { topics: [] };
+  let historyItems = [];
+  const MAX_HISTORY = 24;
 
   const basePath = (() => {
     const path = window.location.pathname;
@@ -41,6 +45,97 @@ document.addEventListener("DOMContentLoaded", () => {
     if (src.startsWith("http") || src.startsWith("data:")) return src;
     if (src.startsWith("/")) return src;
     return `${basePath}${src}`;
+  }
+
+  function loadHistory() {
+    try {
+      const raw = localStorage.getItem("daiNotesHistory");
+      const parsed = raw ? JSON.parse(raw) : [];
+      if (Array.isArray(parsed)) historyItems = parsed;
+    } catch (_err) {
+      historyItems = [];
+    }
+  }
+
+  function saveHistory() {
+    try {
+      localStorage.setItem("daiNotesHistory", JSON.stringify(historyItems.slice(0, MAX_HISTORY)));
+    } catch (_err) {
+      // ignore quota errors
+    }
+  }
+
+  function addHistoryItem(item) {
+    if (!item || !item.prompt || !item.images || !item.images.length) return;
+    const signature = `${item.prompt}|${item.images[0]}`;
+    historyItems = historyItems.filter((h) => `${h.prompt}|${h.images[0]}` !== signature);
+    historyItems.unshift(item);
+    historyItems = historyItems.slice(0, MAX_HISTORY);
+    saveHistory();
+    renderHistory();
+  }
+
+  function renderHistory() {
+    if (!recentList) return;
+    recentList.innerHTML = "";
+    if (!historyItems.length) return;
+
+    historyItems.forEach((item) => {
+      const btn = document.createElement("button");
+      btn.className = "recent-item";
+      btn.type = "button";
+
+      const img = document.createElement("img");
+      img.src = withBase(item.images[0]);
+      img.alt = item.prompt;
+      img.loading = "lazy";
+
+      const span = document.createElement("span");
+      span.textContent = item.prompt;
+
+      btn.appendChild(img);
+      btn.appendChild(span);
+      btn.addEventListener("click", () => showHistoryItem(item));
+
+      recentList.appendChild(btn);
+    });
+  }
+
+  function showHistoryItem(item) {
+    if (!item) return;
+    const promptText = item.prompt || "Previous image";
+    if (resultPrompt) resultPrompt.textContent = promptText;
+    if (resultCaption) resultCaption.textContent = promptText;
+    if (resultBubble) resultBubble.textContent = promptText;
+    setView("result");
+
+    const grid = resultCard?.querySelector(".result-grid");
+    if (grid) grid.style.display = "none";
+
+    if (loadingState) loadingState.style.display = "none";
+
+    if (item.type === "grid") {
+      showHistoryGrid(item);
+      return;
+    }
+
+    if (resultImage) {
+      resultImage.style.display = "block";
+      resultImage.src = withBase(item.images[0]);
+      resultImage.alt = promptText;
+    }
+  }
+
+  function showHistoryGrid(item) {
+    const grid = ensureResultGrid();
+    if (!grid) return;
+    if (resultImage) resultImage.style.display = "none";
+    grid.innerHTML = "";
+    item.images.forEach((src, idx) => {
+      const card = createImageCard(src, `${item.prompt || "Notes"} ${idx + 1}`);
+      grid.appendChild(card);
+    });
+    grid.style.display = "grid";
   }
 
 
@@ -264,6 +359,12 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         showNotesImages(topic);
         if (loadingState) loadingState.style.display = "none";
+        addHistoryItem({
+          id: Date.now(),
+          prompt,
+          type: "grid",
+          images: topic.images || []
+        });
       }, 5000);
       return;
     }
@@ -294,6 +395,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (loadingState) loadingState.style.display = "none";
       if (resultImage) resultImage.style.display = "block";
+      if (resultImage && resultImage.src) {
+        addHistoryItem({
+          id: Date.now(),
+          prompt,
+          type: "single",
+          images: [resultImage.src]
+        });
+      }
     }
   }
 
@@ -310,4 +419,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const notesReady = loadNotesData();
+  loadHistory();
+  renderHistory();
 });
