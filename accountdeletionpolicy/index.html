@@ -35,7 +35,7 @@
     h2 { margin: 22px 0 8px; font-size: 22px; }
     .updated { margin: 0 0 18px; color: var(--muted); font-size: 14px; }
     p, li { color: var(--muted); }
-    ul { margin: 8px 0 0 20px; padding: 0; }
+    ul, ol { margin: 8px 0 0 20px; padding: 0; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
   </style>
@@ -44,44 +44,56 @@
   <main class="wrap">
     <section class="card">
       <h1>Account Deletion Policy</h1>
-      <p class="updated">Last updated: February 12, 2026</p>
+      <p class="updated">Last updated: February 13, 2026</p>
 
       <p>This page explains how account deletion works in the Distractions AI Android app.</p>
 
       <h2>1. How to delete your account</h2>
-      <ul>
+      <ol>
         <li>Open the app and log in.</li>
-        <li>Go to the Imagine page sidebar.</li>
-        <li>Tap <strong>Delete Account</strong> (red button) and confirm.</li>
-      </ul>
+        <li>Open the sidebar menu from the Imagine page.</li>
+        <li>Tap <strong>Delete Account</strong>.</li>
+        <li>Confirm the deletion request.</li>
+      </ol>
+      <p>If you cannot access the app, you can request deletion assistance by email at <a href="mailto:distractionsai.global@gmail.com">distractionsai.global@gmail.com</a> or <a href="mailto:eknathyuvrajpatil@gmail.com">eknathyuvrajpatil@gmail.com</a>.</p>
 
-      <h2>2. What is deleted immediately</h2>
+      <h2>2. What is deleted</h2>
+      <p>When deletion is confirmed, account-related data stored by the app on your device is permanently removed, including:</p>
       <ul>
-        <li>Your account record (email and hashed password) from local app database.</li>
-        <li>Your active session data.</li>
-        <li>Your recent history data stored in app preferences.</li>
+        <li>Account record in local database (email and hashed password).</li>
+        <li>Current login/session data.</li>
+        <li>Account-related history/preferences stored in app SharedPreferences.</li>
       </ul>
 
       <h2>3. What is not deleted automatically</h2>
       <ul>
-        <li>Images already downloaded to your device storage (Downloads/DistractionsAI).</li>
+        <li>Images or files you manually downloaded/exported to device storage (for example, <strong>Downloads/DistractionsAI</strong>).</li>
       </ul>
-      <p>You can manually remove downloaded files from your device file manager at any time.</p>
+      <p>These files are saved as normal device files. You can remove them anytime using your device file manager.</p>
 
-      <h2>4. After deletion</h2>
-      <p>You are logged out and returned to the Login/Signup screen. You can create a new account later using the app.</p>
+      <h2>4. Data retention and timing</h2>
+      <ul>
+        <li>Account data used for login is stored locally on your device (not on developer-controlled account servers).</li>
+        <li>Deletion in the app is applied immediately after confirmation.</li>
+        <li>No personal account login data is retained by the developer after deletion.</li>
+      </ul>
 
-      <h2>5. Contact for deletion help</h2>
+      <h2>5. What happens after deletion</h2>
+      <ul>
+        <li>You are logged out of the app.</li>
+        <li>You are returned to the Login/Signup screen.</li>
+        <li>You can create a new account later in the app if you choose.</li>
+      </ul>
+
+      <h2>6. Contact for deletion help</h2>
       <p>
         Developer: Eknath Patil<br>
-        Phone: +91 8767435956<br>
         Email: <a href="mailto:eknathyuvrajpatil@gmail.com">eknathyuvrajpatil@gmail.com</a><br>
-        App Support: <a href="mailto:distractionsai.global@gmail.com">distractionsai.global@gmail.com</a>
+        Support: <a href="mailto:distractionsai.global@gmail.com">distractionsai.global@gmail.com</a>
       </p>
+
+      
     </section>
   </main>
 </body>
 </html>
-
-
-
